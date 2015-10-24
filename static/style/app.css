@@ -1,0 +1,50 @@
+/* Defaults */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+body, table, input, textarea, p, span, a {
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+input[type="text"], textarea {
+  padding: 4px;
+}
+
+/* Utility Classes */
+
+.hidden {
+  display: none;
+}
+
+/* Buttons */
+
+button, input[type="button"], input[type="submit"], a.button {
+  display: inline-block;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  background-color: #AAAAAA;
+  color: #333;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+a.button:visited {
+  color: #333;
+}
+
+/* Voting */
+
+#voting.voted {
+  display: none;
+}
