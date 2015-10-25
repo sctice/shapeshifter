@@ -22,7 +22,6 @@
   ];
 
   window.onload = function() {
-    console.log("Document loaded");
     var obj = document.getElementById('HubObj');
     svgDocument = obj.contentDocument;
     showStartState();
@@ -108,7 +107,6 @@
     var diffy = (old_mouse_y - event.clientY);
     diffy = diffy*diffy;
     var dist = Math.sqrt(diffx+diffy);
-    console.log(dist);
     if (dist > move_thresh) {
       console.log("move");
     }
@@ -117,8 +115,6 @@
   }
 
   function mykeypress(event) {
-    console.log("mykeypress");
-    console.log(event.keyCode);
     if (event.keyCode == 32) { // space bar
       if (hubState == START_STATE) {
         playIntroVideo();
@@ -150,12 +146,10 @@
   function playIntroVideo() {
     hideMessages();
     showMe("VideoPlaceholder");
-    console.log("play");
     setTimeout(voteReady, 3000);
   }
 
   function voteReady() {
-    console.log("video end");
     hideMessages();
     showMe("StartVote");
     hubState = READY_TO_START_VOTE_STATE;
