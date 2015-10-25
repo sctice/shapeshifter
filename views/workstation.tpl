@@ -7,12 +7,18 @@
   <p id="voted-msg" class="msg">Sending telemetry data... Return to main
   hub.</p>
 
-  <div id="buttons">
-    <a id="succeed-btn" class="cast-vote" data-vote="1" href="#succeed"
-    >Call for help</a>
-    <a id="fail-btn" class="cast-vote" data-vote="0" href="#fail"
-    >Don't call for help</a>
-  </div>
+  <table id="buttons">
+    <tr>
+      <td>
+        <a id="succeed-btn" class="cast-vote" data-vote="1" href="#succeed"
+         >Send Signal</a>
+      </td>
+      <td>
+        <a id="fail-btn" class="cast-vote" data-vote="0" href="#fail"
+         >Disrupt Signal</a>
+      </td>
+    </tr>
+  </table>
 </div>
 
 <script type="text/javascript">

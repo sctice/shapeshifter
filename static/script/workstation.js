@@ -7,6 +7,7 @@
   var voteActive = false;
   var voted = false;
 
+
   buttonEls.each(function() {
     var vote = $(this).attr('data-vote');
     $(this).on('click', function() {
@@ -14,6 +15,9 @@
       return false;
     });
   });
+
+  sizeButtons();
+  $(window).on('resize', sizeButtons);
 
   setInterval(function() {
     $.ajax({
@@ -46,5 +50,16 @@
 
     voted = true;
     workstationEl.addClass('voted');
+  }
+
+  function sizeButtons() {
+    // The height available minus margins.
+    var buttonHeight = window.innerHeight - 220;
+    buttonEls.each(function() {
+      $(this).css({
+        'height': buttonHeight,
+        'line-height': buttonHeight + 'px'
+      });
+    });
   }
 })();
