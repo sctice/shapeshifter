@@ -23,6 +23,10 @@
 
   window.onload = function() {
     var obj = document.getElementById('HubObj');
+    $(obj).css({
+      'height': window.innerHeight,
+      'width': window.innerWidth
+    });
     svgDocument = obj.contentDocument;
     showStartState();
     $(document).on('keyup', mykeypress);
