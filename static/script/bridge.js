@@ -118,9 +118,7 @@
     if (event.keyCode == 32) { // space bar
       if (hubState == START_STATE) {
         playIntroVideo();
-      }
-
-      if (hubState == READY_TO_START_VOTE_STATE) {
+      } else if (hubState == READY_TO_START_VOTE_STATE) {
         startVote();
       }
     }
