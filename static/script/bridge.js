@@ -26,7 +26,7 @@
     var obj = document.getElementById('HubObj');
     svgDocument = obj.contentDocument;
     showStartState();
-    document.addEventListener("keyup", mykeypress);
+    $(document).on('keyup', mykeypress);
   }
 
   // ANIMATIONS
