@@ -28,7 +28,7 @@ def get_bridge_update():
     elif int(request.query.get('stop-vote', 0)) == 1:
         app_config['voting'] = False
         votes = app_config['votes']
-        success = sum(votes.itervalues()) >= 2
+        success = sum(votes.itervalues()) == len(votes)
         json['success'] = 1 if success else 0
     json['voting'] = app_config['voting']
     return json
