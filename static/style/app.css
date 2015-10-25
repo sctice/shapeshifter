@@ -36,11 +36,9 @@ body, table, p, span, a {
   display: none;
 }
 
-#workstation.voting #voting-msg  { display: block; }
 #workstation.voting #buttons     { display: block; }
 #workstation.voting #waiting-msg { display: none;  }
 
-#workstation.voted  #voting-msg  { display: none;  }
 #workstation.voted  #buttons     { display: none;  }
 #workstation.voted  #voted-msg   { display: block; }
 
@@ -50,10 +48,10 @@ body, table, p, span, a {
 
 #workstation a {
   display: block;
-  margin: 20px auto;
-  border: 3px solid black;
+  margin: 40px auto;
+  border: none;
   border-radius: 20px;
-  padding: 20px;
+  padding: 40px;
   color: white;
   text-align: center;
   text-decoration: none;
