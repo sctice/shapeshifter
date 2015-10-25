@@ -1,16 +1,17 @@
 (function() {
   var POLLING_INTERVAL = 1000;
 
-  var votingPanelEl = $('#voting');
-  var votingEls = $('.cast-vote');
+  var workstationEl = $('#workstation');
+  var buttonEls = $('.cast-vote');
 
   var voteActive = false;
   var voted = false;
 
-  votingEls.each(function() {
+  buttonEls.each(function() {
     var vote = $(this).attr('data-vote');
     $(this).on('click', function() {
       castVote(vote)
+      return false;
     });
   });
 
@@ -25,10 +26,10 @@
 
   function setVoting(voting) {
     voteActive = voting;
-    votingPanelEl.toggleClass('hidden', !voting);
+    workstationEl.toggleClass('voting', voting);
     if (!voting) {
       voted = false;
-      votingPanelEl.removeClass('voted');
+      workstationEl.removeClass('voted');
     }
   }
 
@@ -44,6 +45,6 @@
     });
 
     voted = true;
-    votingPanelEl.addClass('voted');
+    workstationEl.addClass('voted');
   }
 })();

@@ -7,44 +7,59 @@
 html, body {
   padding: 0;
   margin: 0;
-  font-family: sans-serif;
+  background-color: black;
 }
 
-body, table, input, textarea, p, span, a {
-  font-size: 20px;
-  font-family: sans-serif;
+body, table, p, span, a {
+  font-size: 40px;
+  font-family: "Lucida Console", Monaco, monospace;
 }
 
-input[type="text"], textarea {
-  padding: 4px;
-}
+/* Messages */
 
-/* Utility Classes */
-
-.hidden {
-  display: none;
-}
-
-/* Buttons */
-
-button, input[type="button"], input[type="submit"], a.button {
-  display: inline-block;
-  border: none;
-  border-radius: 3px;
-  padding: 5px 10px;
-  background-color: #AAAAAA;
-  color: #333;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-}
-
-a.button:visited {
-  color: #333;
+.msg {
+  padding: 20px;
+  border-radius: 20px;
+  margin: 0 auto;
+  background-color: white;
 }
 
 /* Voting */
 
-#voting.voted {
+#workstation {
+  padding: 50px;
+}
+
+#workstation #voting-msg,
+#workstation #voted-msg,
+#workstation #buttons {
   display: none;
 }
+
+#workstation.voting #voting-msg  { display: block; }
+#workstation.voting #buttons     { display: block; }
+#workstation.voting #waiting-msg { display: none;  }
+
+#workstation.voted  #voting-msg  { display: none;  }
+#workstation.voted  #buttons     { display: none;  }
+#workstation.voted  #voted-msg   { display: block; }
+
+#workstation #buttons {
+  margin: 20px 0;
+}
+
+#workstation a {
+  display: block;
+  margin: 20px auto;
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#workstation #succeed-btn { background-color: #080; }
+#workstation #fail-btn    { background-color: #c00; }
+
