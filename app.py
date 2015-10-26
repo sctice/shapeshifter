@@ -4,10 +4,14 @@ import bottle as btl
 from bottle import request, response
 
 
+ABSTAIN = 'A'
+VOTE_YES = 'Y'
+VOTE_NO = 'N'
+
 app = btl.Bottle()
 app.config['voting'] = False
-app.config['votes'] = {'1': 0, '2': 0, '3': 0}
 app.config['valid_stations'] = set(['1', '2', '3'])
+app.config['valid_votes'] = set([ABSTAIN, VOTE_YES, VOTE_NO])
 
 
 @app.get('/bridge')
@@ -22,13 +26,15 @@ def get_bridge_update():
     app_config = request.app.config
     voting = app_config['voting']
     if int(request.query.get('start-vote', 0)) == 1:
-        default_votes = [(k, 0) for k in app_config['valid_stations']]
+        default_votes = [(k, ABSTAIN) for k in app_config['valid_stations']]
         app_config['votes'] = dict(default_votes)
         app_config['voting'] = True
     elif int(request.query.get('stop-vote', 0)) == 1:
         app_config['voting'] = False
         votes = app_config['votes']
-        success = sum(votes.itervalues()) == len(votes)
+        total_votes = sum(1 for v in votes.itervalues() if v != ABSTAIN)
+        yes_votes = sum(1 for v in votes.itervalues() if v == VOTE_YES)
+        success = total_votes >= 1 and yes_votes == total_votes
         json['success'] = 1 if success else 0
     json['voting'] = app_config['voting']
     return json
@@ -39,7 +45,11 @@ def get_bridge_update():
 def get_workstation(wsid):
     if str(wsid) not in request.app.config['valid_stations']:
         btl.abort(404, "Invalid workstation")
-    return {'wsid': wsid}
+    return {
+        'wsid': wsid,
+        'vote_yes': VOTE_YES,
+        'vote_no': VOTE_NO
+    }
 
 
 @app.get('/update-workstation')
@@ -49,10 +59,10 @@ def get_workstation_update():
     voting = app_config['voting']
     vote = request.query.get('cast-vote', None)
     if vote is not None and voting:
-        vote = 1 if int(vote) == 1 else 0
-        station = request.query.get('station')
-        if station in app_config['valid_stations']:
-            app_config['votes'][station] = vote
+        if vote in app_config['valid_votes']:
+            station = request.query.get('station')
+            if station in app_config['valid_stations']:
+                app_config['votes'][station] = vote
     json['voting'] = 1 if voting else 0
     return json
 

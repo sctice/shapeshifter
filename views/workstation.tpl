@@ -10,12 +10,12 @@
   <table id="buttons">
     <tr>
       <td>
-        <a id="succeed-btn" class="cast-vote" data-vote="1" href="#succeed"
-         >Send Signal</a>
+        <a id="succeed-btn" class="cast-vote" data-vote="{{vote_yes}}"
+         href="#succeed">Send Signal</a>
       </td>
       <td>
-        <a id="fail-btn" class="cast-vote" data-vote="0" href="#fail"
-         >Disrupt Signal</a>
+        <a id="fail-btn" class="cast-vote" data-vote="{{vote_no}}"
+         href="#fail">Disrupt Signal</a>
       </td>
     </tr>
   </table>
